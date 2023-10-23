@@ -19,6 +19,33 @@ def fichaOponente(ficha):
     else:
         return "O"
 
+
+def BestMove(posicion, tablero, ficha):
+    puntos_mov = 0
+    tablero.ejecutar_jugada(posicion, ficha)
+    puntos_mov += 1 # daremos un punto solo por hacer movimiento
+    subtablero = posicion[2:]
+    if ficha == "X":
+        jugador = 1
+        otro = 2
+    else:
+        jugador = 2
+        otro = 1
+    tablero[subtablero].jugar(jugador, posicion[3], posicion[2])
+    if tablero[subtablero].ganador == otro:
+        puntos_mov -= 10  # quitamos puntaje si el otro gana
+    elif tablero[subtablero].ganador == jugador:
+        puntos_mov += 10  # daremos un punto si es que se gana
+    elif tablero.revisar_ganador() != 0:
+        puntos_mov += 100
+    else:
+        pass
+    return posicion, puntos_mov
+    # vamos a dar puntaje si es que la jugada nos permite ganar un subtablero
+    # y aún más puntaje si la jugada nos permite ganar todo
+    # solo 1 punto por una jugada que no nos permita ganar
+
+
 def minimax(tablero, profundidad, alpha, beta, funcion_puntaje, maximizar, ficha):
     """
     Algotimo Minimax. Dado el estado actual del juego, alpha, beta,
@@ -63,12 +90,12 @@ def minimax(tablero, profundidad, alpha, beta, funcion_puntaje, maximizar, ficha
             copia_tablero = deepcopy(tablero)
             
             copia_tablero.ejecutar_jugada(jugada, ficha)
-            puntos = funcion_puntaje(tablero, ficha)
+            puntos = BestMove(jugada, copia_tablero, ficha)
 
             jugada_, puntos = minimax(copia_tablero, profundidad - 1, alpha, beta, funcion_puntaje, False, ficha)
 
             if puntos > puntaje:
-                puntaje = funcion_puntaje(tablero, ficha)
+                jugada, puntaje = BestMove(jugada, copia_tablero, ficha)
                 alpha = max(alpha, puntaje)
                 if beta <= alpha:
                     break
@@ -92,12 +119,13 @@ def minimax(tablero, profundidad, alpha, beta, funcion_puntaje, maximizar, ficha
 
             jugada_, puntos = minimax(copia_tablero, profundidad - 1, alpha, beta, funcion_puntaje, True, ficha)
 
-            puntos = funcion_puntaje(tablero, ficha)
+            puntos = BestMove(jugada, copia_tablero, ficha)
 
             if puntos < puntaje:
-                puntaje = funcion_puntaje(tablero, ficha)
+                puntaje = BestMove(jugada, copia_tablero, ficha)
                 beta = min(alpha, puntaje)
                 if beta <= alpha:
                     break
         posicion = jugada
         return posicion, puntaje
+

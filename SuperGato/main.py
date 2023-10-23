@@ -1,34 +1,34 @@
 from tablero import Tablero
-from jugador import JugadorHumano, JugadorIA
-from score import contar_tableros_diferencia
+from jugador import JugadorHumano, JugadorIA, JugadorRandom
+from score import contar_tableros_diferencia, contar_fichas_seguidas, contar_fichas_sin_enemigos
 import time
 
 
 def main():
-    verbose = True  # Si no quieres ver los prints, ponlo en False
 
+    verbose = True  # Si no quieres ver los prints, ponlo en False
     # jugador_1 = JugadorHumano(ficha="X")
     # jugador_2 = JugadorHumano(ficha="O")
 
     # Si quieres jugar contra una IA tienes que usar la siguiente línea
-    jugador_1 = JugadorIA(ficha="O", profundidad=1, funcion_puntaje=contar_tableros_diferencia)
-    jugador_2 = JugadorIA(ficha="X", profundidad=3, funcion_puntaje=contar_tableros_diferencia)
+    jugador_1 = JugadorIA(ficha="X", profundidad=5, funcion_puntaje=contar_tableros_diferencia)
+    jugador_2 = JugadorIA(ficha="O", profundidad=1, funcion_puntaje=contar_fichas_sin_enemigos)
 
     # Si quieres jugar contra un jugador random tienes que usar la siguiente línea
-    # jugador_1 = JugadorRandom(ficha="O")
-    # jugador_2 = JugadorRandom(ficha="X")
+    # jugador_1 = JugadorRandom(ficha="X")
+    # jugador_2 = JugadorRandom(ficha="O")
 
     # Inicializamos el tablero
     partida = Tablero()
     # Lo imprimimos
-    if verbose:
-        partida.imprimir_tablero()
-        print('Para jugar ingrese dos enteros entre 1 y 3 ' +
-              'correspondiente a la subtablero a jugar. Luego ' +
-              'ingrese dos nuevos enteros entre 1 y 3 ' +
-              'correspondiente a la posicion (x,y) en el subtablero ' +
-              'en la que se desee jugar.'
-              )
+    #if verbose:
+    #    partida.imprimir_tablero()
+    #    print('Para jugar ingrese dos enteros entre 1 y 3 ' +
+    #          'correspondiente a la subtablero a jugar. Luego ' +
+    #          'ingrese dos nuevos enteros entre 1 y 3 ' +
+    #          'correspondiente a la posicion (x,y) en el subtablero ' +
+    #          'en la que se desee jugar.'
+    #          )
 
     # A continuación los turnos y la partida.
     # La variable "terminado" representa si la partida esta terminada o no
@@ -52,8 +52,8 @@ def main():
             partida.ejecutar_jugada(posicion, jugador_1.ficha)
 
 
-        if verbose:
-            partida.imprimir_tablero()
+        #if verbose:
+        #    partida.imprimir_tablero()
 
         # Revisamos si la partida terminó
         terminado = partida.revisar_ganador()
@@ -84,8 +84,8 @@ def main():
         else:
             partida.ejecutar_jugada(posicion, jugador_2.ficha)
 
-        if verbose:
-            partida.imprimir_tablero()
+        #if verbose:
+        #    partida.imprimir_tablero()
 
         # Revisamos si la partida terminó
         terminado = partida.revisar_ganador()
@@ -106,4 +106,7 @@ def main():
 
 
 if __name__ == '__main__':
+    inicio = time.time()
     main()
+    fin = time.time()
+    print(fin-inicio)

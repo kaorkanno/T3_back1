@@ -1,0 +1,50 @@
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+O wins!
+Good game.
+35.923095703125
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+X wins!
+Good game.
+33.480247259140015
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+X wins!
+Good game.
+32.91937851905823
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+Tie! :(
+Good game.
+29.32613444328308
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+O wins!
+Good game.
+32.274444580078125
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+O wins!
+Good game.
+29.51619029045105
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+X wins!
+Good game.
+32.00897836685181
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+X wins!
+Good game.
+35.66576910018921
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+O wins!
+Good game.
+27.870169401168823
+
+C:\Users\kaori\Desktop\cosas magister\IA\T3-main\SuperGato>python main.py 
+O wins!
+Good game.
+34.132951974868774
